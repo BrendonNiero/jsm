@@ -1,0 +1,92 @@
+@inject NavigationManager NavigationManager
+
+@code {
+
+    private void NavigateToProduct(int productId)
+    {
+        NavigationManager.NavigateTo($"/produtos/{productId}");
+    }
+
+    private List<Product> products = new List<Product> 
+        {
+            new Product
+            {
+                Id = 1,
+                Title = "Grupo Focal Principal Tipo I",
+                Img = "/images/produtos/gf-i-3-200.jpg",
+                Descriptions = ["Produto a LED", "3x200mm"],
+                IsManufactured = true
+            },
+            new Product
+            {
+                Id = 2,
+                Title = "Grupo Focal Principal Tipo T",
+                Img = "/images/produtos/gf-t-4-200.jpg",
+                Descriptions = ["Produto a LED", "4x200mm"],
+                IsManufactured = true
+            },
+            new Product
+            {
+                Id = 3,
+                Title = "Grupo Focal Principal Tipo GT",
+                Img = "/images/produtos/gf-gtg-300-200-200.jpg",
+                Descriptions = ["Produto a LED", "300x200x200mm"],
+                IsManufactured = true
+            },
+            new Product
+            {
+                Id = 4,
+                Title = "Contador Regressivo com Grupo Focal",
+                Img = "/images/produtos/contador-regressivo-com gf-i-3-200- vermelho.jpg",
+                Descriptions = ["Produto a LED", "3x200m"],
+                IsManufactured = true
+            },
+            new Product
+            {
+                Id = 5,
+                Title = "Lâmpada LED Vermelha",
+                Img = "/images/produtos/lampada-led-200-vermelha.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true
+            },
+            new Product
+            {
+                Id = 6,
+                Title = "Lâmpada LED Amarela",
+                Img = "/images/produtos/lampada-led-200-amarela.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true
+            },
+        };
+}
+
+<section class="flex flex-col items-center justify-center bg-cloud-white">
+    <div class="flex flex-col items-center justify-center">
+        <span class="text-md font-bold text-ashen-black">NOSSOS PRODUTOS</span>
+        <div class="flex gap-2 mb-8">
+            <div class="w-[50px] h-[7px] bg-bright-azure rounded-full"></div>
+            <div class="w-[100px] h-[7px] bg-bright-azure rounded-full"></div>
+        </div>
+    </div>
+    <h1 class="text-ashen-black text-4xl xl:text-5xl font-bold text-center mb-20">Procurando pelos Nossos Produtos</h1>
+        <div class="flex flex-wrap items-center justify-center gap-10 mb-10 w-full xl:w-[1000px] 2xl:w-[1300px]">
+            @foreach (var product in products)
+              {
+               <div class="card bg-white card-ui h-[340px] w-[350px] md:h-[420px] md:w-[400px]" @onclick="() => NavigateToProduct(product.Id)">
+                   <div class="show-more show-button-ui top-24 left-[135px] md:top-40 md:left-40">
+                       <i class="fa-solid fa-plus text-4xl" style="color: #FFF;"></i>
+                   </div>
+                   <img class="h-[250px] md:h-[350px] p-5" src="@product.Img" />
+                   <div class="bg-azure-depths w-full p-4 z-50">
+                       <span class="text-white text-2xl title-product">@product.Title</span>
+                   </div>
+                   <div class="absolute shadow-card"></div>
+               </div>
+                }
+    </div>
+    <a href="/produtos" class="mb-20 flex items-center gap-5 transition text-bright-azure hover:bg-bright-azure 
+    hover:text-white ease-linear border-bright-azure border-2 p-3 rounded-md">
+        <span class="text-2xl font-bold">Ver todos</span>
+        <i class="fa-solid fa-arrow-right text-4xl"></i>
+    </a>
+</section>

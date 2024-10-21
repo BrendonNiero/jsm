@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f2f8f8;
+}
+
+h1 {
+    font-family: "Konkhmer Sleokchher", system-ui;
+}
+
+.main-nav {
+    background: rgb(13,142,208);
+    background: linear-gradient(90deg, rgba(13,142,208,1) 0%, rgba(11,37,98,1) 51%, rgba(2,17,48,1) 100%);
+}
+
+.shadow-black-nav {
+    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.glass-mobile-menu {
+    background-color: #000;
+    opacity: 40%;
+}
+
+.mobile-nav {
+    background: rgb(3,19,51);
+    background: linear-gradient(230deg, rgba(3,19,51,1) 0%, rgba(12,72,135,1) 100%);
+}
+
+.bg-header-home {
+    background-image: url("/images/header-home.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-cta {
+    background-image: url("/images/banner-cta.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-ui {
+    @apply relative flex flex-col items-center justify-between rounded-3xl overflow-hidden shadow-xl shadow-smoke cursor-pointer;
+}
+
+.show-more {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.show-button-ui {
+    @apply bg-azure-depths h-20 w-20 rounded-full flex items-center justify-center absolute z-50;
+}
+
+.shadow-card {
+    background-color: #000;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    filter: opacity(40%);
+}
+
+.card:hover .shadow-card {
+    opacity: 1;
+}
+
+.card:hover .show-more {
+    opacity: 1;
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.logos {
+    overflow: hidden;
+    padding: 40px 0;
+    background-color: #FFF;
+    white-space: nowrap;
+    position: relative;
+}
+
+.logos:before, .logos:after {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
+}
+
+.logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+}
+
+.logos:hover .logos-slide{
+    animation-play-state: paused;
+}
+
+.logos-slide {
+    display: inline-block;
+    animation: 15s slide infinite linear;
+}
+
+.logos-slide img {
+    height: 100px;
+    margin: 0 40px;
+}
+
+.bg-process-area {
+    background: rgb(12,136,201);
+    background: linear-gradient(234deg, rgba(12,136,201,1) 0%, rgba(11,40,106,1) 35%, rgba(13,50,118,1) 100%);
+}
+
+.card-services-factory {
+    background-image: url("/images/traffic-light.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card-services-instalation {
+    background-image: url("/images/traffic-light-instalation.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card-services-under {
+    background-image: url("/images/under-instalation.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.gradient-card-services {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #041740 30%, transparent );
+}
+
+.bg-header {
+    background-image: url("/images/bg-header-about.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.bg-beneficies-work-with-us {
+    background-image: url("/images/bg-beneficies-work-with-us.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.btn-slide {
+    @apply bg-white rounded-full h-20 w-20 flex items-center z-50
+    justify-center shadow-lg shadow-ashen-black;
+}
+
+.title-product {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    line-clamp: 3;
+}
+
+.bg-footer {
+    background: rgb(2,20,53);
+    background: linear-gradient(56deg, rgba(2,20,53,1) 39%, rgba(12,47,113,1) 100%);
+}

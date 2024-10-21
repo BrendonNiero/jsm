@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsm-page</title>
+    <base href="https://BrendonNiero.github.io/jsm" />
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="/images/white-logo.png" />
+    <link href="jsm-page.styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Konkhmer+Sleokchher&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+
+<body>
+    <div id="app">
+        <section class="h-screen w-full flex items-center justify-center bg-white">
+            <img src="https://assets-v2.lottiefiles.com/a/36038e50-1178-11ee-9eeb-932b0ace7009/xwvJM3wTT2.gif" />
+        </section>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("koXJvz0V3pD0lUU_0");
+        })();
+
+        function sendEmail(name, email, phone, subject, message) {
+            emailjs.send("service_h3axit7", "template_bupin8a", {
+                from_name: name,
+                email: email,
+                phone: phone,
+                subject: subject,
+                message: message,
+            })
+            .then(function (response) {
+                console.log("Email enviado com sucesso!")
+            }, function (error) {
+                alert("Falha no envio do e-mail.");
+                console.log("FAILED...", error);
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+﻿<nav class="main-nav text-white px-20 py-6 hidden xl:flex items-center justify-between w-full relative shadow-black shadow-2xl">
+    <NavLink href="/">
+        <img class="h-14" src="/images/white-logo.png" />
+    </NavLink>
+    <div class="w-full flex items-center justify-center gap-20 font-semibold text-xl">
+        <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">Início</NavLink>
+        <div class="relative cursor-pointer" @onclick="ToggleDropdown">
+            <div class="flex items-center gap-2">
+                <span>Empresa</span>
+                @if(isDropdownVisible)
+                {
+                    <i class="fa-solid fa-chevron-right" style="color: #fff;"></i>
+                } else{
+                    <i class="fa-solid fa-chevron-down" style="color: #fff;"></i>
+                }
+            </div>
+            @if(isDropdownVisible)
+            {
+                <div class="flex flex-col absolute top-[66px] left-0 w-[300px] main-nav shadow-ashen-black shadow-md">
+                    <NavLink href="/sobre">
+                        <div class="w-full h-full p-5 hover:border-2 hover:border-azure-depths"><span>Sobre a Empresa</span></div>
+                    </NavLink>
+                    <NavLink href="/trabalhe-conosco">
+                        <div class="w-full h-full p-5 hover:border-2 hover:border-azure-depths"><span>Trabalhe Conosco</span></div>
+                    </NavLink> 
+                </div>
+            }
+        </div>
+        <NavLink href="/produtos">Produtos</NavLink>
+        <NavLink href="/servicos">Serviços</NavLink>
+    </div>
+    <NavLink href="/contato">
+        <span class="bg-bright-azure text-white font-semibold py-3 px-7 rounded-full 
+        transition ease-linear hover:bg-azure-depths">Contato</span>
+    </NavLink>
+</nav>
+<nav class="z-[60] main-nav flex xl:hidden items-center justify-between w-full fixed shadow-black shadow-2xl px-20 
+py-6 transition-transform duration-300 @(openMenu ? "-translate-y-[100rem]" : "")">
+    <NavLink href="/">
+        <img class="h-14" src="/images/white-logo.png" />
+    </NavLink>
+    @if(openMenu)
+    {
+        <button @onclick="ToggleMenuOpen">
+            <i class="fa-solid fa-xmark text-3xl" style="color: #fff;"></i>
+        </button>
+    } else {
+        <button @onclick="ToggleMenuOpen">
+            <i class="fa-solid fa-bars text-3xl" style="color: #fff;"></i>
+        </button>
+    }
+</nav>
+    <div class="z-[60] flex h-screen w-full xl:hidden fixed top-0 left-0 transition-transform duration-100 @(!openMenu ? "-translate-x-[100rem]" : "")">
+        <div class="w-[85%] md:w-[70%] lg:w-[40%] h-full mobile-nav flex flex-col p-20">
+            <div class="w-full flex items-center justify-end">
+                <button @onclick="ToggleMenuOpen">
+                    <i class="fa-solid fa-xmark text-3xl" style="color: #fff;"></i>
+                </button>
+            </div>
+            <NavLink @onclick="ToggleMenuOpen" href="/">
+                <img class="h-14" src="/images/white-logo.png" />
+            </NavLink>
+            <div class="flex flex-col items-start justify-start text-white text-xl gap-10 mt-10">
+                <NavLink @onclick="ToggleMenuOpen" href="/" class="hover:text-misty-blue">Início</NavLink>
+                <NavLink @onclick="ToggleMenuOpen" href="/sobre" class="hover:text-misty-blue">Sobre</NavLink>
+                <NavLink @onclick="ToggleMenuOpen" href="/trabalhe-conosco" class="hover:text-misty-blue">Trabalhe Conosco</NavLink>
+                <NavLink @onclick="ToggleMenuOpen" href="/produtos" class="hover:text-misty-blue">Produtos</NavLink>
+                <NavLink @onclick="ToggleMenuOpen" href="/servicos" class="hover:text-misty-blue">Serviços</NavLink>
+                <NavLink @onclick="ToggleMenuOpen" href="/contato">
+                    <span class="bg-bright-azure text-white font-semibold py-3 px-7 
+                    rounded-full transition ease-linear hover:bg-azure-depths">Contato</span>
+                </NavLink>
+            </div>
+        </div>
+        <div @onclick="ToggleMenuOpen" class="w-[15%] md:w-[30%] lg:w-[60%] h-full glass-mobile-menu"></div>
+    </div>
+
+
+@code {
+    private bool isDropdownVisible = false;
+    private bool openMenu = false;
+
+    private void ToggleMenuOpen()
+    {
+        openMenu = !openMenu;
+    }
+
+    private void ToggleDropdown()
+    {
+        isDropdownVisible = !isDropdownVisible;
+    }
+}

@@ -1,0 +1,128 @@
+@inject IJSRuntime js
+
+<section class="gap-10 flex flex-col 2xl:flex-row p-10 md:p-20 xl:p-40 text-ashen-black">
+    <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-10 rounded-xl w-full 2xl:w-[600px] p-10 shadow-smoke shadow-md">
+            <div class="hidden md:flex">
+                <i class="fa-brands fa-whatsapp text-5xl bg-[#c7dbfe] p-5 rounded-full" style="color: #3880f9;"></i>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold">Whatsapp da Empresa</span>
+                <p class="text-xl font-semibold">(18) 98190-0031</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-10 rounded-xl w-full 2xl:w-[600px] p-10 shadow-smoke shadow-md">
+            <div class="hidden md:flex">
+                <i class="fa-regular fa-envelope text-5xl bg-[#c7dbfe] p-5 rounded-full" style="color: #3880f9;"></i>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold">Endereço de Email</span>
+                <p class="text-xl font-semibold">jsm@jsmengenharia.com.br</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-10 rounded-xl w-full 2xl:w-[600px] p-10 shadow-smoke shadow-md">
+            <div class="hidden md:flex">
+                <i class="fa-solid fa-phone text-5xl bg-[#c7dbfe] p-5 rounded-full" style="color: #3880f9;"></i>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold">Número de Contato</span>
+                <p class="text-xl font-semibold">(18) 3841-2608</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-10 rounded-xl w-full 2xl:w-[600px] p-10 shadow-smoke shadow-md">
+            <div class="hidden md:flex">
+                <i class="fa-solid fa-location-dot text-5xl bg-[#c7dbfe] p-5 rounded-full" style="color: #3880f9;"></i>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold">Endereço da Empresa</span>
+                <p class="text-xl font-semibold">Distro 4, Junqueirópolis - SP</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full h-full md:h-[732px] rounded-xl shadow-md shadow-smoke p-5 md:p-20 flex flex-col justify-between">
+        @if (IsEmailSent)
+        {
+            <div class="flex flex-col items-center justify-center text-center">
+                <div class="bg-[#d5fcf2] p-5 rounded-full mb-5 md:mb-10">
+                    <i class="fa-solid fa-check text-5xl" style="color: #209377;"></i>
+                </div>
+                <h1 class="text-4xl mb-5">Seu email foi enviado com sucesso!</h1>
+                <p class="text-xl mb-10"> Nossa equipe retornará o contato em breve. Agradecemos pela sua espera.</p>
+                <NavLink href="/">
+                    <span class="bg-bright-azure text-white font-semibold py-3 px-7 rounded-full transition 
+                    ease-linear hover:bg-azure-depths">Voltar</span>
+                </NavLink>
+            </div>
+        }
+        else
+        {
+            <div class="flex flex-col gap-5 mb-5 md:mb-10 xl:mb-0">
+                <h1 class="text-4xl xl:text-5xl">Enviar Mensagem</h1>
+                <p class="hidden md:flex text-xl font-semibold">
+                    Entre em contato conosco! Nossa equipe está pronta para 
+                    responder suas dúvidas e retornaremos o mais breve possível.
+                </p>
+            </div>
+
+            @if (!IsFormValid)
+            {
+                <div class="w-full  flex items-start justify-start my-5 md:my-0">
+                    <span class="bg-[#d21c1c] text-white p-3 
+                    shadow-ashen-black shadow-sm rounded-md">Por favor preencha todos os campos</span>
+                </div>
+            }
+
+            <form class="flex flex-col gap-2 md:gap-5" @onsubmit="SendEmail" @onsubmit:preventDefault>
+                <div class="flex gap-2 md:gap-5">
+                    <input class="flex md:hidden bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="text" placeholder="Nome" @bind="Name" />
+                    <input class="hidden md:flex bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="text" placeholder="Nome ou Empresa" @bind="Name" />
+                    <input class="flex md:hidden bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="email" placeholder="E-mail" @bind="Email" />
+                    <input class="hidden md:flex bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="email" placeholder="E-mail de Contato" @bind="Email" />
+                </div>
+                <div class="flex gap-2 md:gap-5">
+                    <input class="bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="text" placeholder="Telefone" @bind="Phone" />
+                    <input class="bg-cloud-white p-5 border border-ashen-black rounded-md w-full" 
+                    type="text" placeholder="Assunto" @bind="Subject" />
+                </div>
+                <textarea class="overflow-y-auto resize-none bg-cloud-white p-5 border 
+                border-ashen-black rounded-md w-full" placeholder="Mensagem" @bind="Message"></textarea>
+                <button type="submit" class="hidden md:flex items-center justify-center bg-bright-azure transition ease-in-out 
+                hover:bg-azure-depths font-semibold text-white py-5 px-20 rounded-md">Enviar Mensagem</button>
+                <button type="submit" class="flex items-center justify-center md:hidden bg-bright-azure transition ease-in-out 
+                hover:bg-azure-depths font-semibold text-white py-5 px-20 rounded-md">Enviar</button>
+            </form>
+        }
+    </div>
+</section>
+
+@code {
+    private bool IsEmailSent { get; set; } = false;
+    private bool IsFormValid { get; set; } = true;
+    private string Name { get; set; }
+    private string Email { get; set; }
+    private string Phone { get; set; }
+    private string Subject { get; set; }
+    private string Message { get; set; }
+
+    private async Task SendEmail()
+    {
+        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Email) ||
+            string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Subject) ||
+            string.IsNullOrWhiteSpace(Message))
+        {
+            IsFormValid = false;
+        }
+        else
+        {
+            IsFormValid = true;
+            await js.InvokeVoidAsync("sendEmail", Name, Email, Phone, Subject, Message);
+            IsEmailSent = true;
+        }
+    }
+}

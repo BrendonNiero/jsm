@@ -1,0 +1,374 @@
+@page "/produtos/{id:int}"
+@inject NavigationManager NavigationManager
+@inject HttpClient Http
+
+<PageTitle>Produto</PageTitle>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Product selectedProduct;
+    
+    private int currentIndex = 0;
+
+    private const int productsPage = 4;
+    private const int productsMobilePage = 2;
+
+    private List<Product> relatedProducts = new List<Product>();
+
+    private void MoveNext()
+    {
+        if((currentIndex + productsPage) < products.Count)
+        {
+            currentIndex += productsPage;
+        }
+    }
+
+    private void MovePrevious()
+    {
+        if(currentIndex > 0)
+        {
+            currentIndex -= productsPage;
+        }
+    }
+    private void MoveNextMobile()
+    {
+        if((currentIndex + productsMobilePage) < products.Count)
+        {
+            currentIndex += productsMobilePage;
+        }
+    }
+
+    private void MovePreviousMobile()
+    {
+        if(currentIndex > 0)
+        {
+            currentIndex -= productsMobilePage;
+        }
+    }
+
+    private void NavigateToProduct(int productId)
+    {
+        NavigationManager.NavigateTo($"/produtos/{productId}");
+    }
+    protected override void OnParametersSet()
+    {
+        selectedProduct = products.FirstOrDefault(p => p.Id == Id);
+    
+        if (selectedProduct == null)
+        {
+            NavigationManager.NavigateTo("/produtos");
+        }
+        else
+        {
+            relatedProducts = products
+                .Where(p => p.Category == selectedProduct.Category && p.Id != selectedProduct.Id)
+                .ToList();
+        }
+    }
+
+    private string GenerateLinkWhatsApp(string productTitle)
+    {
+        var encodedTitle = Uri.EscapeDataString(productTitle);
+        return $"https://wa.me/5518981900031?text=Ola,%20Gostaria%20de%20encomendar%20o%20produto%20{encodedTitle}.";
+    }
+    private string GenerateLinkMoreInformationWhatsApp(string productTitle)
+    {
+        var encodedTitle = Uri.EscapeDataString(productTitle);
+        return $"https://wa.me/5518981900031?text=Ola,%20Gostaria%20de%20mais%20informações%20sobre%20o%20produto%20{encodedTitle}.";
+    }
+    private List<Product> products = new List<Product>
+        {
+            new Product
+            {
+                Id = 1,
+                Title = "Grupo Focal Principal Tipo I",
+                Img = "/images/produtos/gf-i-3-200.jpg",
+                Descriptions = ["Produto a LED", "3x200mm"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 2,
+                Title = "Grupo Focal Principal Tipo T",
+                Img = "/images/produtos/gf-t-4-200.jpg",
+                Descriptions = ["Produto a LED", "4x200mm"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 3,
+                Title = "Grupo Focal Principal Tipo GT",
+                Img = "/images/produtos/gf-gtg-300-200-200.jpg",
+                Descriptions = ["Produto a LED", "300x200x200mm"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 4,
+                Title = "Contador Regressivo com Grupo Focal",
+                Img = "/images/produtos/contador-regressivo-com gf-i-3-200- vermelho.jpg",
+                Descriptions = ["Produto a LED", "3x200m"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 5,
+                Title = "Lâmpada LED Vermelha",
+                Img = "/images/produtos/lampada-led-200-vermelha.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true,
+                Category = "Lampada Led"
+            },
+            new Product
+            {
+                Id = 6,
+                Title = "Lâmpada LED Amarela",
+                Img = "/images/produtos/lampada-led-200-amarela.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true,
+                Category = "Lampada Led"
+            },
+            new Product
+            {
+                Id = 7,
+                Title = "Lâmpada LED Verde",
+                Img = "/images/produtos/lampada-led-200-verde.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true,
+                Category = "Lampada Led"
+            },
+            new Product
+            {
+                Id = 8,
+                Title = "Grupo Focal",
+                Img = "/images/produtos/gf-2-200.jpg",
+                Descriptions = ["Produto a LED", "200mm"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 9,
+                Title = "Botoeira Comum e Sonora",
+                Img = "/images/produtos/botoeira-b.jpg",
+                Descriptions = ["Botoeira Sonora"],
+                IsManufactured = false,
+                Category = "Outros"
+            },
+            new Product
+            {
+                Id = 10,
+                Title = "Grupo Focal Pedestre com Contador",
+                Img = "/images/produtos/gf-pedestre-contador.jpg",
+                Descriptions = ["Produto a LED", "Contator"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 11,
+                Title = "Grupo Focal Pedestre",
+                Img = "/images/produtos/gf-pedestre.jpg",
+                Descriptions = ["Produto a LED"],
+                IsManufactured = true,
+                Category = "Grupo Focal"
+            },
+            new Product
+            {
+                Id = 12,
+                Title = "Controlador Semafórico UCS-03",
+                Img = "/images/produtos/controlador-semaforico-ucs-03.png",
+                Descriptions = ["Controlador Semafórico", "UCS-03"],
+                IsManufactured = true,
+                Category = "Controlador"
+            },
+            new Product
+            {
+                Id = 13,
+                Title = "Controlador Semafórico TC JSM",
+                Img = "/images/produtos/controlador-semaforico-tcjsm.jpg",
+                Descriptions = ["Controlador Semafórico", "TC JSM"],
+                IsManufactured = true,
+                Category = "Controlador"
+            },
+        };
+}
+
+@if(selectedProduct == null)
+{
+    <section class="h-screen w-full gap-10 items-center justify-center">
+        <h1 class="text-6xl font-bold">Produto não Encontrado</h1>
+        <a class="p-3 rounded-md bg-bright-azure text-white font-semibold" href="/produtos">Voltar</a>
+    </section>
+}
+else 
+{
+<div class="h-full hidden xl:flex flex-col w-full text-ashen-black p-5 bg-cloud-white">
+    <p class="mt-10 font-bold text-xl">Explore outras opções que podem ser do seu interesse:</p>
+    <div class="flex items-center gap-5 mb-10">
+        <div class="flex items-center gap-2">
+            <NavLink href="/produtos/grupo-focal" class="text-xl font-semibold text-bright-azure">Grupos Focais</NavLink>
+            <i class="fa-solid fa-chevron-right" style="color: #;"></i>
+        </div>
+        <div class="flex items-center gap-2">
+            <NavLink href="/produtos/led" class="text-xl font-semibold text-bright-azure">Lampadas Led</NavLink>
+            <i class="fa-solid fa-chevron-right" style="color: #;"></i>
+        </div>
+        <NavLink href="/produtos/controlador" class="text-xl font-semibold text-bright-azure">Controlador</NavLink>
+    </div>
+    <section class="h-full w-full rounded-xl bg-white shadow-xl shadow-ashen-black p-5">
+        <div class="flex justify-between 2xl:justify-normal">
+            <div class="flex flex-col gap-3">
+                <div class="w-28 h-28 border-ashen-black rounded-md hover:outline 
+                hover:outline-bright-azure cursor-pointer border flex items-center justify-center">
+                    <img class="h-20" src="@selectedProduct.Img" />
+                </div>
+            </div>
+            <div class="p-20 flex items-center justify-center :w-[700px] 2xl:w-[800px]">
+                <img class="h-[400px] 2xl:h-[500px]" src="@selectedProduct.Img" />
+            </div>
+            <div class="flex flex-col mr-20 2xl:mr-0">
+                <div class="flex items-center gap-3 mb-3 mt-20">
+                    <div class="flex items-center gap-5 bg-black text-white p-3 rounded-md">
+                        <i class="fa-regular fa-building text-xl"></i>
+                        <span class="font-semibold">FABRICADO</span>
+                    </div>
+                    <span class="text-xl font-semibold">em JSM Junqueirópolis</span>
+                </div>
+                <h4 class="text-2xl font-bold mb-5">@selectedProduct.Title</h4>
+                <div class="flex flex-col gap-1">
+                    @foreach(var description in selectedProduct.Descriptions)
+                    {
+                        <p class="text-xl font-semibold text-davys-gray">
+                            <span class="font-extrabold text-bright-azure text-4xl">•</span>
+                            @description
+                        </p>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 h-full justify-center text-center">
+                    <NavLink href="@GenerateLinkWhatsApp(selectedProduct.Title)"
+                    class="bg-bright-azure f text-2xl text-white p-4 rounded-md">Encomendar Produto</NavLink>
+                    <NavLink href="@GenerateLinkMoreInformationWhatsApp(selectedProduct.Title)"
+                    class="bg-[#e3edfc] flex items-center justify-center text-bright-azure text-2xl p-4 rounded-md">Mais informações</NavLink>
+                </div>
+            </div>
+        </div>
+        @if (relatedProducts.Any())
+        {
+            <div class="relative">
+                <h3 class="text-3xl font-bold">Produtos relacionados</h3>
+                <p class="text-davys-gray font-semibold text-xl mb-10">@selectedProduct.Category</p>
+        
+                @if(currentIndex > 0)
+                {
+                    <button @onclick="MovePrevious" class="btn-slide absolute top-56 left-16">
+                        <i class="fa-solid fa-chevron-left text-2xl" style="color: #2355da;"></i>
+                    </button>
+                }
+                <div class="flex gap-5 ease-linear transition-transform items-center 
+                 overflow-x-auto justify-center" style="transform: translateX(@(-(currentIndex * 0))%);">
+                   @foreach (var product in relatedProducts.Skip(currentIndex).Take(productsPage))
+                   {
+                       <div class="card card-ui h-[340px] w-[350px] md:h-[420px] md:w-[400px] mb-20" 
+                       @onclick="() => NavigateToProduct(product.Id)">
+                            <div class="show-more show-button-ui top-24 left-[135px] md:top-40 md:left-40">
+                                <i class="fa-solid fa-plus text-4xl" style="color: #FFF;"></i>
+                            </div>
+                            <img class="h-[250px] md:h-[350px] p-5" src="@product.Img" />
+                            <div class="bg-azure-depths w-full p-4 z-50">
+                                <span class="text-white text-2xl title-product">@product.Title</span>
+                            </div>
+                            <div class="absolute shadow-card"></div>
+                        </div>
+                   }
+                </div>
+                @if ((currentIndex + productsPage) < relatedProducts.Count)
+                {
+                    <button @onclick="MoveNext" class="btn-slide absolute top-56 right-16">
+                        <i class="fa-solid fa-chevron-right text-2xl" style="color: #2355da;"></i>
+                    </button>
+                }
+            </div>
+        }
+    </section>
+</div>
+<div class="flex flex-col items-start justify-start xl:hidden text-ashen-black bg-white">
+    <div class="flex justify-center gap-7 md:gap-10 w-full flex-wrap items-center mt-40 px-10">
+        <NavLink href="/produtos" class="text-lg md:text-xl font-semibold text-azure-depths hover:text-deep-sea">Todos os Produtos</NavLink>
+        <NavLink href="/produtos/grupo-focal" class="text-lg md:text-xl font-semibold text-azure-depths hover:text-deep-sea">Grupos Focais</NavLink>
+        <NavLink href="/produtos/led" class="text-lg md:text-xl font-semibold text-azure-depths hover:text-deep-sea">Lampadas LED</NavLink>
+        <NavLink href="/produtos/controlador" class="text-lg md:text-xl font-semibold text-azure-depths hover:text-deep-sea">Controlador</NavLink>
+        <NavLink href="/produtos/outros" class="text-lg md:text-xl font-semibold text-azure-depths hover:text-deep-sea">Outros</NavLink>
+    </div>
+    <div class="flex items-center gap-5 bg-black text-white p-3 rounded-md mt-20 mx-10">
+        <i class="fa-regular fa-building text-xl"></i>
+        <span class="font-semibold">FABRICADO</span>
+    </div>
+    <h4 class="text-4xl font-bold mb-5 mx-10">@selectedProduct.Title</h4>
+    <div class="w-full flex items-center justify-center mb-10">
+        <img class="h-[500px]" src="@selectedProduct.Img" />
+    </div>
+    @foreach(var description in selectedProduct.Descriptions)
+    {
+        <p class="text-xl font-semibold text-davys-gray px-10">
+            <span class="font-extrabold text-bright-azure text-4xl">•</span>
+            @description
+        </p>
+    }
+    <div class="flex flex-col gap-2 w-full justify-center text-center mt-10 mb-5 px-10">
+        <NavLink href="@GenerateLinkWhatsApp(selectedProduct.Title)"
+        class="bg-bright-azure f text-2xl text-white p-4 rounded-md">Encomendar Produto</NavLink>
+        <NavLink href="@GenerateLinkMoreInformationWhatsApp(selectedProduct.Title)"
+        class="bg-[#e3edfc] flex items-center justify-center text-bright-azure text-2xl 
+        p-4 rounded-md">Mais informações</NavLink>
+    </div>
+    @if (relatedProducts.Any())
+        {
+            <div class="relative">
+                <h3 class="text-3xl font-bold px-10">Produtos relacionados</h3>
+                <p class="text-davys-gray font-semibold text-xl mb-10 px-10">@selectedProduct.Category</p>
+                <div class="flex gap-5 ease-linear transition translate-x-0 items-center px-4 py-10 
+                overflow-x-auto justify-center translate-x-[(-@((currentIndex * 0) / productsMobilePage)%)]"
+                     >
+                    @foreach (var product in relatedProducts.Skip(currentIndex).Take(productsMobilePage))
+                    {
+                        <div class="card card-ui h-full sm:h-[310px] w-[170px] sm:w-[250px] md:h-[420px] md:w-[400px] relative" 
+                        @onclick="() => NavigateToProduct(product.Id)">
+                            <div class="hidden sm:flex">
+                                <div class="show-more show-button-ui top-16 left-0 sm:top-24 sm:left-[84px] md:top-40 md:left-40">
+                                    <i class="fa-solid fa-plus text-4xl" style="color: #FFF;"></i>
+                                </div>
+                            </div>
+                            <img class="h-[170px] sm:h-[250px] md:h-[350px] p-5" src="@product.Img" />
+                            <div class="bg-azure-depths w-full p-4 z-50">
+                                <span class="text-white text-sm sm:text-xl md:text-2xl title-product">@product.Title</span>
+                            </div>
+                            <div class="absolute shadow-card"></div>
+                        </div>
+                    }
+                </div>
+                <div class="flex items-center justify-between p-10">
+                    @if(currentIndex > 0)
+                    {
+                        <button @onclick="MovePreviousMobile" class="btn-slide">
+                            <i class="fa-solid fa-chevron-left text-2xl" style="color: #2355da;"></i>
+                        </button>
+                    } else {
+                        <div class="h-10 w-10"></div>
+                    }
+                    @if ((currentIndex + productsMobilePage) < relatedProducts.Count)
+                    {
+                        <button @onclick="MoveNextMobile" class="btn-slide">
+                            <i class="fa-solid fa-chevron-right text-2xl" style="color: #2355da;"></i>
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+</div>
+}
+
