@@ -30,11 +30,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Node.js Dependencies
-        run: npm install
+      - name: Navigate to jsm-page and Install Node.js Dependencies
+        run: |
+          cd jsm-page
+          npm install
 
       - name: Run Tailwind CSS Build
-        run: npm run build
+        run: |
+          cd jsm-page
+          npm run build
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
