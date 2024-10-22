@@ -3,7 +3,6 @@ name: Deploy
 on:
   push:
     branches: ["main"]
-
   workflow_dispatch:
 
 permissions:
@@ -21,50 +20,43 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Navigate to jsm-page and Install Node.js Dependencies
-        run: |
-          cd jsm-page
-          npm install
-
-      - name: Run Tailwind CSS Build
-        run: |
-          cd jsm-page
-          npm run build
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.102
+          dotnet-version: 8.0.x
 
-      - name: Install .NET Wasm Tools
-        run: dotnet workload install wasm-tools
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-      - name: Restore Dependencies
-        run: dotnet restore jsm-page/jsm-page.csproj
+      - name: Install npm dependencies
+        run: npm install
 
-      - name: Build .NET Project
-        run: dotnet build jsm-page/jsm-page.csproj -c Release --no-restore
+      - name: Build TailwindCSS
+        run: npm run build 
+      - name: Restore .NET dependencies
+        run: dotnet restore
 
-      - name: Publish .NET
-        run: dotnet publish jsm-page/jsm-page.csproj -c Release -o docs --nologo
+      - name: Build .NET project
+        run: dotnet build -c Release --no-restore
+
+      - name: Publish .NET project
+        run: dotnet publish jsm-page.csproj -c:Release -o docs --nologo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload
+      - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'docs/wwwroot'
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
