@@ -36,14 +36,14 @@ h1 {
 }
 
 .bg-header-home {
-    background-image: url("/images/header-home.png");
+    background-image: url("jsm/images/header-home.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .bg-cta {
-    background-image: url("/images/banner-cta.png");
+    background-image: url("jsm/images/banner-cta.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -134,21 +134,21 @@ h1 {
 }
 
 .card-services-factory {
-    background-image: url("/images/traffic-light.png");
+    background-image: url("jsm/images/traffic-light.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .card-services-instalation {
-    background-image: url("/images/traffic-light-instalation.jpg");
+    background-image: url("jsm/images/traffic-light-instalation.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .card-services-under {
-    background-image: url("/images/under-instalation.jpg");
+    background-image: url("jsm/images/under-instalation.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
