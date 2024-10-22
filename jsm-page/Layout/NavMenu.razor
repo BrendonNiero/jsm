@@ -1,6 +1,6 @@
 ﻿<nav class="main-nav text-white px-20 py-6 hidden xl:flex items-center justify-between w-full relative shadow-black shadow-2xl">
     <NavLink href="/">
-        <img class="h-14" src="/images/white-logo.png" />
+        <img class="h-14" src="/jsm/images/white-logo.png" />
     </NavLink>
     <div class="w-full flex items-center justify-center gap-20 font-semibold text-xl">
         <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">Início</NavLink>
@@ -37,7 +37,7 @@
 <nav class="z-[60] main-nav flex xl:hidden items-center justify-between w-full fixed shadow-black shadow-2xl px-20 
 py-6 transition-transform duration-300 @(openMenu ? "-translate-y-[100rem]" : "")">
     <NavLink href="/">
-        <img class="h-14" src="/images/white-logo.png" />
+        <img class="h-14" src="/jsm/images/white-logo.png" />
     </NavLink>
     @if(openMenu)
     {
@@ -58,7 +58,7 @@ py-6 transition-transform duration-300 @(openMenu ? "-translate-y-[100rem]" : ""
                 </button>
             </div>
             <NavLink @onclick="ToggleMenuOpen" href="/">
-                <img class="h-14" src="/images/white-logo.png" />
+                <img class="h-14" src="/jsm/images/white-logo.png" />
             </NavLink>
             <div class="flex flex-col items-start justify-start text-white text-xl gap-10 mt-10">
                 <NavLink @onclick="ToggleMenuOpen" href="/" class="hover:text-misty-blue">Início</NavLink>

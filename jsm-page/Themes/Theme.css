@@ -134,21 +134,21 @@ h1 {
 }
 
 .card-services-factory {
-    background-image: url("jsm/images/traffic-light.png");
+    background-image: url("/jsm/images/traffic-light.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .card-services-instalation {
-    background-image: url("jsm/images/traffic-light-instalation.jpg");
+    background-image: url("/jsm/images/traffic-light-instalation.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .card-services-under {
-    background-image: url("jsm/images/under-instalation.jpg");
+    background-image: url("/jsm/images/under-instalation.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -161,7 +161,7 @@ h1 {
 }
 
 .bg-header {
-    background-image: url("/images/bg-header-about.png");
+    background-image: url("/jsm/images/bg-header-about.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -169,7 +169,7 @@ h1 {
 
 
 .bg-beneficies-work-with-us {
-    background-image: url("/images/bg-beneficies-work-with-us.png");
+    background-image: url("/jsm/images/bg-beneficies-work-with-us.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
