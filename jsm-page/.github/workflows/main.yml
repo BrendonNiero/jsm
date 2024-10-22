@@ -46,7 +46,7 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore
 
-      - name: Build
+      - name: Build .NET Project
         run: dotnet build -c Release --no-restore
 
       - name: Publish .NET
