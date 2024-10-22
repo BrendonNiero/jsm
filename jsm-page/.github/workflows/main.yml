@@ -45,13 +45,13 @@ jobs:
         run: dotnet workload install wasm-tools
 
       - name: Restore Dependencies
-        run: dotnet restore jsm-page/jsm-page.csproj
+        run: dotnet restore jsm-page.csproj  # Caminho ajustado
 
       - name: Build .NET Project
-        run: dotnet build jsm-page/jsm-page.csproj -c Release --no-restore
+        run: dotnet build jsm-page.csproj -c Release --no-restore  # Caminho ajustado
 
       - name: Publish .NET
-        run: dotnet publish jsm-page/jsm-page.csproj -c:Release -o docs --nologo
+        run: dotnet publish jsm-page.csproj -c Release -o docs --nologo  # Caminho ajustado
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
