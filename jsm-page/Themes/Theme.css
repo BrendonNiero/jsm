@@ -36,14 +36,14 @@ h1 {
 }
 
 .bg-header-home {
-    background-image: url("jsm/images/header-home.png");
+    background-image: url("/jsm/images/header-home.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .bg-cta {
-    background-image: url("jsm/images/banner-cta.png");
+    background-image: url("/jsm/images/banner-cta.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
