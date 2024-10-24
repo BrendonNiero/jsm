@@ -4,7 +4,7 @@
 
     private void NavigateToProduct(int productId)
     {
-        NavigationManager.NavigateTo($"/produtos/{productId}");
+        NavigationManager.NavigateTo($"produtos/{productId}");
     }
 
     private List<Product> products = new List<Product> 
@@ -84,9 +84,9 @@
                </div>
                 }
     </div>
-    <a href="/produtos" class="mb-20 flex items-center gap-5 transition text-bright-azure hover:bg-bright-azure 
+    <NavLink href="produtos" class="mb-20 flex items-center gap-5 transition text-bright-azure hover:bg-bright-azure 
     hover:text-white ease-linear border-bright-azure border-2 p-3 rounded-md">
         <span class="text-2xl font-bold">Ver todos</span>
         <i class="fa-solid fa-arrow-right text-4xl"></i>
-    </a>
+    </NavLink>
 </section>
