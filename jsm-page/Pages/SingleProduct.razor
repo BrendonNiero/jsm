@@ -332,11 +332,10 @@ else
                 <h3 class="text-3xl font-bold px-10">Produtos relacionados</h3>
                 <p class="text-davys-gray font-semibold text-xl mb-10 px-10">@selectedProduct.Category</p>
                 <div class="flex gap-5 ease-linear transition translate-x-0 items-center px-4 py-10 
-                overflow-x-auto justify-center translate-x-[(-@((currentIndex * 0) / productsMobilePage)%)]"
-                     >
+                overflow-x-auto justify-center translate-x-[(-@((currentIndex * 0) / productsMobilePage)%)]">
                     @foreach (var product in relatedProducts.Skip(currentIndex).Take(productsMobilePage))
                     {
-                        <div class="card card-ui h-full sm:h-[310px] w-[170px] sm:w-[250px] md:h-[420px] md:w-[400px] relative" 
+                        <div class="card card-ui h-full sm:h-[310px] w-[170px] sm:w-[250px] md:h-[420px] md:w-[400px] xl:h-[350px] relative" 
                         @onclick="() => NavigateToProduct(product.Id)">
                             <div class="hidden sm:flex">
                                 <div class="show-more show-button-ui top-16 left-0 sm:top-24 sm:left-[84px] md:top-40 md:left-40">
