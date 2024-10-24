@@ -703,14 +703,6 @@ video {
   top: 66px;
 }
 
-.left-40 {
-  left: 10rem;
-}
-
-.top-40 {
-  top: 10rem;
-}
-
 .isolate {
   isolation: isolate;
 }
@@ -1040,6 +1032,10 @@ video {
   height: 100vh;
 }
 
+.h-\[150px\] {
+  height: 150px;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -1130,6 +1126,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[150px\] {
+  width: 150px;
 }
 
 .max-w-\[600px\] {
@@ -2455,6 +2455,11 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .pl-20 {
   padding-left: 5rem;
 }
@@ -2465,6 +2470,22 @@ video {
 
 .pt-52 {
   padding-top: 13rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pt-20 {
+  padding-top: 5rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
+}
+
+.pt-48 {
+  padding-top: 12rem;
 }
 
 .text-left {
@@ -2566,6 +2587,11 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .font-bold {
@@ -3500,6 +3526,10 @@ h1 {
     width: 250px;
   }
 
+  .sm\:w-\[350px\] {
+    width: 350px;
+  }
+
   .sm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -3570,14 +3600,6 @@ h1 {
 
   .md\:h-screen {
     height: 100vh;
-  }
-
-  .md\:h-\[370px\] {
-    height: 370px;
-  }
-
-  .md\:h-\[200px\] {
-    height: 200px;
   }
 
   .md\:w-\[130px\] {
@@ -3664,6 +3686,16 @@ h1 {
     padding: 5rem;
   }
 
+  .md\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   .md\:pl-20 {
     padding-left: 5rem;
   }
@@ -3694,18 +3726,6 @@ h1 {
 }
 
 @media (min-width: 1024px) {
-  .lg\:left-\[120px\] {
-    left: 120px;
-  }
-
-  .lg\:left-\[200px\] {
-    left: 200px;
-  }
-
-  .lg\:left-\[500px\] {
-    left: 500px;
-  }
-
   .lg\:mb-20 {
     margin-bottom: 5rem;
   }
@@ -3725,40 +3745,12 @@ h1 {
 }
 
 @media (min-width: 1280px) {
-  .xl\:left-\[85px\] {
-    left: 85px;
-  }
-
-  .xl\:left-\[200px\] {
-    left: 200px;
-  }
-
-  .xl\:top-20 {
-    top: 5rem;
-  }
-
-  .xl\:left-\[100px\] {
-    left: 100px;
-  }
-
-  .xl\:left-\[110px\] {
-    left: 110px;
-  }
-
-  .xl\:left-\[115px\] {
-    left: 115px;
-  }
-
-  .xl\:left-\[113px\] {
-    left: 113px;
-  }
-
   .xl\:left-\[112px\] {
     left: 112px;
   }
 
-  .xl\:top-16 {
-    top: 4rem;
+  .xl\:left-\[85px\] {
+    left: 85px;
   }
 
   .xl\:top-24 {
@@ -3785,6 +3777,14 @@ h1 {
     display: none;
   }
 
+  .xl\:h-\[320px\] {
+    height: 320px;
+  }
+
+  .xl\:h-\[350px\] {
+    height: 350px;
+  }
+
   .xl\:h-\[600px\] {
     height: 600px;
   }
@@ -3795,22 +3795,6 @@ h1 {
 
   .xl\:h-full {
     height: 100%;
-  }
-
-  .xl\:h-screen {
-    height: 100vh;
-  }
-
-  .xl\:h-\[320px\] {
-    height: 320px;
-  }
-
-  .xl\:h-\[420px\] {
-    height: 420px;
-  }
-
-  .xl\:h-\[350px\] {
-    height: 350px;
   }
 
   .xl\:w-\[1000px\] {
@@ -3845,10 +3829,6 @@ h1 {
     width: 100%;
   }
 
-  .xl\:w-\[400px\] {
-    width: 400px;
-  }
-
   .xl\:flex-row {
     flex-direction: row;
   }
@@ -3881,10 +3861,6 @@ h1 {
     padding: 10rem;
   }
 
-  .xl\:p-10 {
-    padding: 2.5rem;
-  }
-
   .xl\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
@@ -3914,12 +3890,12 @@ h1 {
     padding-bottom: 2.5rem;
   }
 
-  .xl\:pt-28 {
-    padding-top: 7rem;
-  }
-
   .xl\:pt-20 {
     padding-top: 5rem;
+  }
+
+  .xl\:pt-28 {
+    padding-top: 7rem;
   }
 
   .xl\:text-2xl {
@@ -3949,24 +3925,8 @@ h1 {
 }
 
 @media (min-width: 1536px) {
-  .\32xl\:left-\[200px\] {
-    left: 200px;
-  }
-
-  .\32xl\:top-28 {
-    top: 7rem;
-  }
-
-  .\32xl\:left-\[150px\] {
-    left: 150px;
-  }
-
   .\32xl\:left-\[160px\] {
     left: 160px;
-  }
-
-  .\32xl\:top-24 {
-    top: 6rem;
   }
 
   .\32xl\:top-32 {
@@ -3977,8 +3937,8 @@ h1 {
     margin-right: 0px;
   }
 
-  .\32xl\:flex {
-    display: flex;
+  .\32xl\:h-\[420px\] {
+    height: 420px;
   }
 
   .\32xl\:h-\[500px\] {
@@ -3993,12 +3953,12 @@ h1 {
     height: 100vh;
   }
 
-  .\32xl\:h-\[420px\] {
-    height: 420px;
-  }
-
   .\32xl\:w-\[1300px\] {
     width: 1300px;
+  }
+
+  .\32xl\:w-\[400px\] {
+    width: 400px;
   }
 
   .\32xl\:w-\[600px\] {
@@ -4011,10 +3971,6 @@ h1 {
 
   .\32xl\:w-\[900px\] {
     width: 900px;
-  }
-
-  .\32xl\:w-\[400px\] {
-    width: 400px;
   }
 
   .\32xl\:flex-row {
