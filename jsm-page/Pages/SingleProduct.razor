@@ -200,7 +200,7 @@
 
 @if(selectedProduct == null)
 {
-    <section class="h-screen w-full gap-10 items-center justify-center">
+    <section class="h-screen w-full gap-10 flex flex-col items-center justify-center">
         <h1 class="text-6xl font-bold">Produto não Encontrado</h1>
         <a class="p-3 rounded-md bg-bright-azure text-white font-semibold" href="/produtos">Voltar</a>
     </section>
@@ -229,7 +229,7 @@ else
                 </div>
             </div>
             <div class="p-20 flex items-center justify-center :w-[700px] 2xl:w-[800px]">
-                <img class="h-[400px] 2xl:h-[500px]" src="@selectedProduct.Img" />
+                <img class="h-[400px] 2xl:h-[500px] 3xl:h-[600px]" src="@selectedProduct.Img" />
             </div>
             <div class="flex flex-col mr-20 2xl:mr-0">
                 <div class="flex items-center gap-3 mb-3 mt-20">
@@ -237,13 +237,13 @@ else
                         <i class="fa-regular fa-building text-xl"></i>
                         <span class="font-semibold">FABRICADO</span>
                     </div>
-                    <span class="text-xl font-semibold">em JSM Junqueirópolis</span>
+                    <span class="text-xl font-semibold 3xl:text-2xl">em JSM Junqueirópolis</span>
                 </div>
-                <h4 class="text-2xl font-bold mb-5">@selectedProduct.Title</h4>
+                <h4 class="text-2xl font-bold mb-5 3xl:text-4xl">@selectedProduct.Title</h4>
                 <div class="flex flex-col gap-1">
                     @foreach(var description in selectedProduct.Descriptions)
                     {
-                        <p class="text-xl font-semibold text-davys-gray">
+                        <p class="text-xl 3xl:text-2xl font-semibold text-davys-gray">
                             <span class="font-extrabold text-bright-azure text-4xl">•</span>
                             @description
                         </p>
@@ -259,9 +259,9 @@ else
         </div>
         @if (relatedProducts.Any())
         {
-            <div class="relative">
-                <h3 class="text-3xl font-bold">Produtos relacionados</h3>
-                <p class="text-davys-gray font-semibold text-xl mb-10">@selectedProduct.Category</p>
+            <div class="relative flex 3xl:items-center 3xl:justify-center flex-col">
+                <h3 class="text-3xl font-bold 3xl:text-4xl">Produtos relacionados</h3>
+                <p class="text-davys-gray font-semibold text-xl mb-10 3xl:text-2xl">@selectedProduct.Category</p>
         
                 @if(currentIndex > 0)
                 {
