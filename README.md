@@ -5,7 +5,7 @@ Este repositório contém o código-fonte do site institucional da JSM, desenvol
 - <a href="https://brendonniero.github.io/jsm/">Acesse o site</a>
 
 # 🚀 Tecnologias Utilizadas
-[![My Skills](https://skillicons.dev/icons?i=js,cs,dotnet,tailwind,linux,nodejs,npm)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=html,css,js,cs,dotnet,tailwind,nodejs,npm,linux)](https://skillicons.dev)
 
 # Pré-requisitos
 Certifique-se de que você tem as seguintes dependências instaladas:
