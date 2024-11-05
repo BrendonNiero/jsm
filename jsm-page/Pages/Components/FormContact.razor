@@ -1,6 +1,6 @@
 @inject IJSRuntime js
 
-<section class="gap-10 flex flex-col 2xl:flex-row p-10 md:p-20 xl:p-40 text-ashen-black">
+<section class="gap-10 flex flex-col 2xl:flex-row p-5 sm:p-10 md:p-20 xl:p-40 text-ashen-black">
     <div class="flex flex-col gap-5">
         <div class="flex items-center gap-10 rounded-xl w-full 2xl:w-[600px] p-10 shadow-smoke shadow-md">
             <div class="hidden md:flex">
@@ -96,6 +96,10 @@
                 hover:bg-azure-depths font-semibold text-white py-5 px-20 rounded-md">Enviar Mensagem</button>
                 <button type="submit" class="flex items-center justify-center md:hidden bg-bright-azure transition ease-in-out 
                 hover:bg-azure-depths font-semibold text-white py-5 px-20 rounded-md">Enviar</button>
+                <h-captcha id="signupCaptcha"
+                site-key="781559eb-513a-4bae-8d29-d4af340e3624"
+                size="normal"
+                tabindex="0"></h-captcha>
             </form>
         }
     </div>
@@ -112,6 +116,7 @@
 
     private async Task SendEmail()
     {
+        var captchaCompleted = await js.InvokeAsync<bool>("checkCaptchaResponse");
         if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Email) ||
             string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Subject) ||
             string.IsNullOrWhiteSpace(Message))
@@ -120,9 +125,16 @@
         }
         else
         {
-            IsFormValid = true;
-            await js.InvokeVoidAsync("sendEmail", Name, Email, Phone, Subject, Message);
-            IsEmailSent = true;
-        }
+            if(captchaCompleted)
+            {
+                IsFormValid = true;
+                await js.InvokeVoidAsync("sendEmail", Name, Email, Phone, Subject, Message);
+                IsEmailSent = true;
+            }
+            else
+            {
+                IsFormValid = false;
+            }
+        } 
     }
 }

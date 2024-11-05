@@ -3527,6 +3527,10 @@ h1 {
     width: 350px;
   }
 
+  .sm\:p-10 {
+    padding: 2.5rem;
+  }
+
   .sm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -3751,16 +3755,8 @@ h1 {
 }
 
 @media (min-width: 1280px) {
-  .xl\:left-\[112px\] {
-    left: 112px;
-  }
-
   .xl\:left-\[85px\] {
     left: 85px;
-  }
-
-  .xl\:top-24 {
-    top: 6rem;
   }
 
   .xl\:mb-0 {
@@ -3783,10 +3779,6 @@ h1 {
     display: none;
   }
 
-  .xl\:h-\[320px\] {
-    height: 320px;
-  }
-
   .xl\:h-\[350px\] {
     height: 350px;
   }
@@ -3801,10 +3793,6 @@ h1 {
 
   .xl\:h-full {
     height: 100%;
-  }
-
-  .xl\:h-screen {
-    height: 100vh;
   }
 
   .xl\:w-\[1000px\] {
@@ -3890,6 +3878,11 @@ h1 {
     padding-bottom: 2.5rem;
   }
 
+  .xl\:py-32 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
   .xl\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -3898,16 +3891,6 @@ h1 {
   .xl\:py-5 {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-  }
-
-  .xl\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
-  .xl\:py-32 {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
   }
 
   .xl\:pb-10 {
@@ -3949,20 +3932,8 @@ h1 {
 }
 
 @media (min-width: 1536px) {
-  .\32xl\:left-\[160px\] {
-    left: 160px;
-  }
-
-  .\32xl\:top-32 {
-    top: 8rem;
-  }
-
   .\32xl\:mr-0 {
     margin-right: 0px;
-  }
-
-  .\32xl\:h-\[420px\] {
-    height: 420px;
   }
 
   .\32xl\:h-\[500px\] {
@@ -3979,10 +3950,6 @@ h1 {
 
   .\32xl\:w-\[1300px\] {
     width: 1300px;
-  }
-
-  .\32xl\:w-\[400px\] {
-    width: 400px;
   }
 
   .\32xl\:w-\[600px\] {

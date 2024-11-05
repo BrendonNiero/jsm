@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
@@ -21,13 +21,29 @@
             <img src="https://assets-v2.lottiefiles.com/a/36038e50-1178-11ee-9eeb-932b0ace7009/xwvJM3wTT2.gif" />
         </section>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@hcaptcha/vanilla-hcaptcha"></script>
     <script src="/jsm/_framework/blazor.webassembly.js"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="text/javascript">
+      function checkCaptchaResponse() {
+            const responseInput = document.querySelector('[name="h-captcha-response"]');
+            if (responseInput && responseInput.value) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        const captchaInterval = setInterval(() => {
+            if (checkCaptchaResponse()) {
+                clearInterval(captchaInterval);
+            }
+        }, 1000);
+
         (function () {
             emailjs.init("koXJvz0V3pD0lUU_0");
         })();
-
+    
         function sendEmail(name, email, phone, subject, message) {
             emailjs.send("service_vkhw6ma", "template_bupin8a", {
                 from_name: name,
@@ -37,12 +53,19 @@
                 message: message,
             })
             .then(function (response) {
-                console.log("Email enviado com sucesso!")
+                alert("Email Enviado com Sucesso!");
             }, function (error) {
                 alert("Falha no envio do e-mail.");
                 console.log("FAILED...", error);
             });
         }
+        const signupCaptcha = document.getElementById('signupCaptcha');
+        signupCaptcha.addEventListener('verified', (e) => {
+            console.log('verified event', {token: e.token});
+        });
+        signupCaptcha.addEventListener('error', (e) => {
+            console.log('error event', {error: e.error});
+        });
     </script>
 </body>
 
